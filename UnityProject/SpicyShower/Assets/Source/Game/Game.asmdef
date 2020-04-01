@@ -1,8 +1,6 @@
 {
     "name": "Game",
-    "references": [
-        "GUID:140f0437a32efb04e8c4447c5d14ba54"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
