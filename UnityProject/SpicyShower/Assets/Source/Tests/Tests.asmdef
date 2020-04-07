@@ -3,6 +3,10 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
+        "Unity.InputSystem",
+        "UniRx",
+        "Zenject",
+        "Zenject-TestFramework",
         "Game"
     ],
     "includePlatforms": [],

@@ -72,6 +72,9 @@ crashlytics-build.properties
 /**/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /**/[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Temporary auto-generated test scenes
+/**/[Aa]ssets/InitTestScene*
+
 
 
 # Windows thumbnail cache files
