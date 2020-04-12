@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 1657510809}
   - component: {fileID: 1657510812}
   - component: {fileID: 1657510805}
+  - component: {fileID: 1657510811}
   - component: {fileID: 1657510804}
   m_Layer: 8
   m_Name: Player
@@ -397,6 +398,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: af81c803-03ca-4319-92de-d825082d2af3
     m_ActionName: Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1657510811}
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1a542d53-77b2-4620-a7c5-99cafe2c633c
+    m_ActionName: Player/Jump[/Keyboard/upArrow,/Keyboard/w,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -472,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657510803}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.71, y: 4.74, z: -1.0664062}
+  m_LocalPosition: {x: -4.62, y: 6.44, z: -1.0664062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -515,6 +531,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &1657510811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657510803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a11cd7af8dd094fba7343c03e37f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _apexHeight: 3
+  _timeToApex: 1
+  _timeFromApex: 2
+  _jumpAfterLeavingGroundDelay: 0
+  _jumpBeforeLandingDelay: 3
 --- !u!114 &1657510812
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,10 @@ using UniRx;
 
 namespace SpicyShower.Physics.CharacterController
 {
+    /// <inheritdoc/>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]         // Must have a Rigidbody2D in order for colliders to register collisions
-    public partial class PlatformerRigidGroundChecker2D : MonoBehaviour
+    public partial class PlatformerRigidGroundChecker2D : MonoBehaviour, IKnowsWhenGrounded
     {
         /// <summary>
         /// Layer mask of the layers the object will consider to be ground.
@@ -21,9 +22,6 @@ namespace SpicyShower.Physics.CharacterController
         /// </summary>
         [SerializeField] public Collider2D[] groundCheckColliders;
 
-        /// <summary>
-        /// Whether the object is on the ground right now.
-        /// </summary>
         public ReadOnlyReactiveProperty<bool> isGrounded { get; private set; }
 
         private ReactiveProperty<bool> _isGrounded;
@@ -31,8 +29,8 @@ namespace SpicyShower.Physics.CharacterController
 
         private void Awake()
         {
-            _isGrounded = new ReactiveProperty<bool>(false);
-            isGrounded = _isGrounded.ToReadOnlyReactiveProperty();
+            _isGrounded = new ReactiveProperty<bool>(false).AddTo(this);
+            isGrounded = _isGrounded.ToReadOnlyReactiveProperty().AddTo(this);
         }
 
         private void FixedUpdate()
