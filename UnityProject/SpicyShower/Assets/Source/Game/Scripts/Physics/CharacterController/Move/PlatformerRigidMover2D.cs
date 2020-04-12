@@ -62,8 +62,8 @@ namespace SpicyShower.Physics.CharacterController
 
         private void Awake()
         {
-            _velocity = new ReactiveProperty<float>(0);
-            velocity = _velocity.ToReadOnlyReactiveProperty();
+            _velocity = new ReactiveProperty<float>(0).AddTo(this);
+            velocity = _velocity.ToReadOnlyReactiveProperty().AddTo(this);
 
             _rigidbody = GetComponent<Rigidbody2D>();
 
