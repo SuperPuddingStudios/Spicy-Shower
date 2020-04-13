@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UniRx;
-using Zenject;
 
 
 namespace SpicyShower.Physics.CharacterController
