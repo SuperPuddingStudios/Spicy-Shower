@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
 using FsCheck;
@@ -19,20 +18,6 @@ namespace SpicyShower.Physics.CharacterController.Tests
         private PlatformerRigidJumper2D jumper;
         private IKnowsWhenGrounded groundChecker;
         private ReactiveProperty<bool> isGrounded;
-        private float originalTimeScale;
-
-        [OneTimeSetUp]
-        public void ScaleTime()
-        {
-            originalTimeScale = Time.timeScale;
-            Time.timeScale = 2.5f;
-        }
-
-        [OneTimeTearDown]
-        public void ResetTimeScale()
-        {
-            Time.timeScale = originalTimeScale;
-        }
 
         [SetUp]
         public void CreateJumper()
@@ -75,22 +60,20 @@ namespace SpicyShower.Physics.CharacterController.Tests
             jumper.jumpAfterLeavingGroundDelay = jumpAfterLeavingGroundDelay;
 
             isGrounded.Value = false;
-            yield return null;
+            float groundedTime = Time.time;
+            Assert.That(jumper.canJump.Value, Is.True, $"{nameof(jumper.canJump)} should stay true for {nameof(jumper.jumpAfterLeavingGroundDelay)} seconds.");
 
-            if (jumpAfterLeavingGroundDelay == 0)
-            {
-                Assert.That(jumper.canJump.Value, Is.False, $"{nameof(jumper.canJump)} should be false immediately if {nameof(jumper.jumpAfterLeavingGroundDelay)} is 0.");
-            }
-            else
+            yield return new WaitForSeconds(jumpAfterLeavingGroundDelay * 0.9f);
+
+            // WaitForSeconds waits at least one frame. If jumpAfterLeavingGroundDelay is very small, this single frame might overshoot so we accommodate with this if statement
+            if (Time.time < groundedTime + jumpAfterLeavingGroundDelay)
             {
                 Assert.That(jumper.canJump.Value, Is.True, $"{nameof(jumper.canJump)} should stay true for {nameof(jumper.jumpAfterLeavingGroundDelay)} seconds.");
-
-                yield return new WaitForSeconds(jumpAfterLeavingGroundDelay * 0.9f);
-                Assert.That(jumper.canJump.Value, Is.True, $"{nameof(jumper.canJump)} should stay true for {nameof(jumper.jumpAfterLeavingGroundDelay)} seconds.");
-
-                yield return new WaitForSeconds(jumpAfterLeavingGroundDelay * 0.1f);
-                Assert.That(jumper.canJump.Value, Is.False, $"{nameof(jumper.canJump)} should be false after {nameof(jumper.jumpAfterLeavingGroundDelay)} seconds.");
             }
+
+            yield return new WaitForSeconds(jumpAfterLeavingGroundDelay * 0.1f);
+
+            Assert.That(jumper.canJump.Value, Is.False, $"{nameof(jumper.canJump)} should be false after {nameof(jumper.jumpAfterLeavingGroundDelay)} seconds.");
         }
 
         [UnityTest]
