@@ -42,6 +42,7 @@ jobs:
           artifactsPath: test-results
 
       - name: Actifact test results
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: Test results
