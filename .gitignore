@@ -24,7 +24,9 @@
 /**/[Aa]ssets/Plugins/Editor/JetBrains*
 
 # NuGetForUnity packages
-/**/[Aa]ssets/Plugins/NuGetPackages
+/**/[Aa]ssets/Plugins/NuGetPackages/*/*
+!/**/[Aa]ssets/Plugins/NuGetPackages/**/lib
+!/**/[Aa]ssets/Plugins/NuGetPackages/**/lib.meta
 
 # Visual Studio cache directory
 .vs/
