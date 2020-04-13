@@ -8,10 +8,11 @@ using Zenject;
 
 namespace SpicyShower.Physics.CharacterController
 {
+    /// <inheritdoc/>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IKnowsWhenGrounded))]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlatformerRigidJumper2D : MonoBehaviour
+    public class PlatformerRigidJumper2D : MonoBehaviour, IHasJumpData
     {
         private const float MinAllowedTime = 0.001f;
 
@@ -21,27 +22,18 @@ namespace SpicyShower.Physics.CharacterController
         [SerializeField] private float _jumpAfterLeavingGroundDelay;
         [SerializeField] private float _jumpBeforeLandingDelay;
 
-        /// <summary>
-        /// The height at the top of the jump.
-        /// </summary>
         public float apexHeight
         {
             get => _apexHeight;
             set => _apexHeight = value >= 0 ? value : throw new ArgumentOutOfRangeException(nameof(apexHeight), $"{nameof(apexHeight)} must be non-negative.");
         }
 
-        /// <summary>
-        /// The time in seconds it takes to reach the top of the jump.
-        /// </summary>
         public float timeToApex
         {
             get => _timeToApex;
             set => _timeToApex = value > 0 ? value : throw new ArgumentOutOfRangeException(nameof(timeToApex), $"{nameof(timeToApex)} must be positive.");
         }
 
-        /// <summary>
-        /// The time in seconds it takes to fall from the top of the jump back to ground.
-        /// </summary>
         public float timeFromApex
         {
             get => _timeFromApex;

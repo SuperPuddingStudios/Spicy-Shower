@@ -6,17 +6,15 @@ using UniRx;
 
 namespace SpicyShower.Physics.CharacterController
 {
+    /// <inheritdoc/>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlatformerRigidMover2D : MonoBehaviour
+    public class PlatformerRigidMover2D : MonoBehaviour, IHas1DReactiveVelocity
     {
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _timeToMaxSpeed;
         [SerializeField] private float _timeToStop;
 
-        /// <summary>
-        /// The maximum horizontal speed this object can reach in ideal conditions (no friction etc.)
-        /// </summary>
         public float maxSpeed
         {
             get => _maxSpeed;
@@ -43,9 +41,6 @@ namespace SpicyShower.Physics.CharacterController
             set => _timeToStop = value >= 0 ? value : throw new ArgumentOutOfRangeException(nameof(timeToStop), $"{nameof(timeToStop)} must be non-negative.");
         }
 
-        /// <summary>
-        /// The current velocity of the object.
-        /// </summary>
         public ReadOnlyReactiveProperty<float> velocity { get; private set; }
 
         private ReactiveProperty<float> _velocity;
