@@ -24,7 +24,9 @@
 /**/[Aa]ssets/Plugins/Editor/JetBrains*
 
 # NuGetForUnity packages
-/**/[Aa]ssets/Plugins/NuGetPackages
+/**/[Aa]ssets/Plugins/NuGetPackages/*/*
+!/**/[Aa]ssets/Plugins/NuGetPackages/**/lib
+!/**/[Aa]ssets/Plugins/NuGetPackages/**/lib.meta
 
 # Visual Studio cache directory
 .vs/
@@ -71,6 +73,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /**/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /**/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Temporary auto-generated test scenes
+/**/[Aa]ssets/InitTestScene*
 
 
 
